@@ -41,6 +41,9 @@ int main() {
     while(true) {
         int client_fd = accept(server_fd, NULL, NULL);
         if (client_fd < 0) continue;
+        // Read incoming HTTP request (IMPORTANT)
+        char buffer[1024];
+        read(client_fd, buffer, sizeof(buffer));
         
         // Simple HTTP response
         std::string response = "HTTP/1.1 200 OK\r\n";
